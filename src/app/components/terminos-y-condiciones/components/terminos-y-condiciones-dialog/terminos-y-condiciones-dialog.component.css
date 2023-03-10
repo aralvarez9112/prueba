@@ -1,0 +1,81 @@
+:host {
+	display: flex !important;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+:host .panel .panel-body {
+	word-wrap: break-word;
+}
+
+::ng-deep .mat-dialog-content {
+	/* max-height: 60vh !important;*/
+}
+.mat-dialog-content {
+  margin-top: 10px;
+}
+
+.tittle {
+	font-weight: 600 !important;
+	color: rgb(64 82 181) !important;
+	margin-bottom: 5px !important;
+}
+
+.sub-title {
+	font-size: 0.8rem !important;
+	color: #e23030 !important;
+}
+
+.text-align-center {
+	text-align: center !important;
+}
+
+.text-align-justify {
+	text-align: justify !important;
+}
+
+.font-style-italic {
+	font-style: italic !important;
+}
+
+::-webkit-scrollbar {
+	width: 8px !important;
+	height: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: darkgrey;
+}
+
+@media screen and (max-width: 808px) {
+	.text-aceptar {
+		font-size: 1em;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.text-aceptar {
+		font-size: 0.9em;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.text-aceptar {
+		font-size: 0.8em;
+	}
+}
+
+@media screen and (max-width: 350px) {
+	.text-aceptar {
+		font-size: 0.7em;
+	}
+
+	::ng-deep .mat-dialog-content {
+		max-height: 60vh !important;
+	}
+}

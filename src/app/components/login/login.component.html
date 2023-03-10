@@ -1,0 +1,69 @@
+<div class="body-page">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-md-9 col-lg-6 col-xl-5 gs1-background-color-orange">
+        <div class="col align-self-center">
+          <br>
+          <h1 style="display:flex; align-items: center; justify-content: center;" class="gs1-color-white">Administre sus
+            Códigos Online</h1>
+          <br><br>
+          <p style="display:flex; align-items: center; justify-content: center;" class="gs1-color-white">Inicie sesión
+            para comenzar.</p>
+          <br><br><br><br><br><br><br>
+          <div>
+            <h4 style="display:flex; align-items: center; justify-content: center;" class="gs1-color-white"><i
+                class="bi bi-people-fill" style="margin: 12px;"></i><i class="bi bi-upc-scan"
+                style="margin: 12px;"></i><i class="bi bi-clipboard-data-fill" style="margin: 12px;"></i></h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4">
+        <div class="d-flex flex-row align-items-center justify-content-center tittle">
+          <p class="lead fw-normal mb-0 me-3" style="font-size: 30px;">Iniciar Sesión</p>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="LogIn()">
+          <!-- Email input -->
+          <div class="form-outline mb-3">
+            <!-- <label class="form-label">Usuario</label> -->
+            <mat-form-field class="form-control display-field" appearance="outline" >
+              <mat-label>Usuario</mat-label>
+              <input type="email" id="usuario" matInput   pattern="[a-zA-Z0-9!#$%&'*_+-]([\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?" placeholder="correo@correo.com" formControlName="usuario" />
+              <mat-error *ngIf="form.get('usuario')?.invalid">Usuario Invalido.</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-3" >
+            <!-- <label class="form-label">Contraseña</label> -->
+          <mat-form-field class="form-control display-field" appearance="outline" >
+            <mat-label>Contraseña</mat-label>
+            <input type="password" id="password" matInput minlength="8" formControlName="password" />
+            <mat-error *ngIf="form.get('password')?.invalid">Contraseña Invalida.</mat-error>
+          </mat-form-field>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <!-- Checkbox -->
+            <div class="form-check mb-0">
+              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+              <label class="form-check-label" for="form2Example3">
+                Recordarme
+              </label>
+            </div>
+            <a href="#!" class="text-body gs1-color-blue">Olvidé mi contraseña</a>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button (click)="LogIn()" type="button" class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;"  [disabled]="!form.valid" >Login</button>
+            <p class="small fw-bold mt-2 pt-1 mb-0">No tengo cuenta <br><a href="#!" class="link-danger">Contáctese con
+                GS1 Uruguay</a></p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+<app-loading></app-loading>
+</div>

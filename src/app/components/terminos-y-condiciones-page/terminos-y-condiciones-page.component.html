@@ -1,0 +1,22 @@
+<app-tab-navigation [activeTabIndex]="2" [admin]="true"></app-tab-navigation>
+<div class="container-fluid mt-2 body-page" >
+  <p class="gs1-color-sky path-paginas" >Inicio
+    <span class="gs1-color-ui-5">></span> <span class="gs1-color-ui-5"> T&C</span>
+  </p>
+</div>
+
+<app-loading></app-loading>
+<div class="container-fluid mt-2 body-page" >
+  <div class="row justify-content-start">
+    <div class="col-12">
+      <h1><i class="bi bi-info-square"></i> Términos y Condiciones</h1>
+      <hr>
+    </div>
+  </div>
+<app-terminos-y-condiciones-table ></app-terminos-y-condiciones-table>
+</div>
+<div class="row back-button">
+  <div class="col-12">
+    <button type="button" [routerLink]="['/pagina/inicio']" class="btn btn-light gs1-color-black">Volver</button>
+  </div>
+</div>

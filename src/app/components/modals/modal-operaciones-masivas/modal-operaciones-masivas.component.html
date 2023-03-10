@@ -1,0 +1,31 @@
+<h1 *ngIf="data.titleKey !== ''" mat-dialog-title>
+  <div class="modal-header">
+    <h2 class="modal-title">
+      <i class="bi bi-box-seam mr-10"></i>{{data.titleKey}}
+    </h2>
+    <button type="button" class="btn-close" (click)="cancel()"></button>
+  </div>
+</h1>
+<div mat-dialog-content>
+  <div class="modal-body">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h4 class="fw">Seleccione la operación a realizar.</h4>
+        <mat-form-field appearance="outline">
+          <mat-label>Operación</mat-label>
+          <mat-select matNativeControl name="codigos" [(ngModel)]="actividad" required>
+            <mat-option *ngFor="let m of actividades" [value]="m">{{m}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="modal-footer">
+    <button mat-raised-button class="btn btn-secondary gs1-color-white" (click)="cancel()">
+      CANCELAR
+    </button>
+    <button mat-raised-button class="btn btn-primary" (click)="accept()">
+      ACEPTAR
+    </button>
+  </div>

@@ -1,0 +1,66 @@
+<div class="business-groups" fxLayout="row" fxLayoutAlign="space-around center">
+  <mat-card fxFlex="85" fxFlex.sm="100" fxFlex.xs="100">
+    <div [ngClass]="'groupList'">
+      <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+
+        <div class="row justify-content-center">
+          <div class="class col-4 align-self-center">
+
+          </div>
+          <div class="col-4 align-self-center">
+            <mat-form-field appearance="standard" style="min-width: 100%;">
+              <mat-label>Buscar</mat-label>
+              <input matInput type="text" name="buscarProducto" (keyup.enter)='buscarProducto()' [(ngModel)]="buscador">
+            </mat-form-field>
+          </div>
+          <div class="col-4 align-self-center" style="text-align: end;">
+              <button  class="btn btn-secondary gs1-color-white" style="display: inline-flex;"
+              (click)="createTerminosYCondicionesModal()" >
+              <mat-icon>add</mat-icon>
+              Agregar
+              </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tableDiv">
+        <mat-table fxFlexFill #tableGroups [dataSource]="terminosYCondicionesDataSource" matSort matSortActive="version"
+          matSortDirection="asc" (matSortChange)="sortData($event)">
+          <ng-container matColumnDef="version">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by name">Version</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{ element.sversion }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="titulo">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{ element.titulo }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="accion">
+            <mat-header-cell *matHeaderCellDef>Acción</mat-header-cell>
+            <mat-cell *matCellDef="let element" fxLayoutAlign="end center">
+              <button mat-icon-button  (click)="editarTerminosYCondicionesModal(element.id)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
+
+          <mat-row *matRowDef="let row; columns: displayedColumns; let rowInd = index"></mat-row>
+        </mat-table>
+        <div class="table-no-results" [style.display]="(total | async)== 0 ? '' : 'none'">
+          No se han creado Términos y Condiciones.
+        </div>
+        <footer>
+          <mat-paginator #paginator [length]="total | async" [pageIndex]="pageIndex" [pageSize]="5"
+            [pageSizeOptions]="[5, 10, 25]" (page)="cambiarPagina($event)">
+          </mat-paginator>
+        </footer>
+      </div>
+    </div>
+  </mat-card>
+</div>

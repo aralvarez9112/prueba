@@ -1,0 +1,10 @@
+:host .panel .panel-body {
+	word-wrap: break-word;
+}
+.mensaje-body{
+color: #002c6c;}
+.modal-header{
+padding: 0.5rem;
+}
+
+.red-color{color: #dc3545;}

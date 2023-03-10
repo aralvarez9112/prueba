@@ -1,0 +1,15 @@
+<div class="row justify-content-start">
+  <div class="col-6 align-self-center">
+    <img [src]="imgURL" class="img-thumbnail postion-img" width="80%">
+  </div>
+  <div class="col-6 align-self-center">
+    <h2 class="gs1-color-orange dt">GTIN: {{this.empaque.gtin}}</h2>
+    <h4><b>Empaque: {{this.empaque.empaque }} x {{this.empaque.unidades }}</b></h4>
+    <h4><b>Marca: {{this.producto.marca}} {{this.producto.subMarca | vacio}}</b></h4>
+    <h4> <b>Descripcion: {{this.producto.descripcion }}</b></h4>
+    <h4><b>Contenido Neto: {{contenidoNeto}}</b></h4>
+    <h4><b>Mercado Objetivo: {{mercadoObjetivo}}</b></h4>
+    <h4><b>GPC: {{producto.gpc}}</b></h4>
+    <h4><b>Estado: {{producto.estado}}</b></h4>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class=" flex-direction-column width-100">
+	<div *ngIf="terminosYCondiciones">
+		<div class=" justify-content-center flex-grow-1">
+			<p class="text-align-center" [innerHTML]="terminosYCondiciones.titulo"></p>
+		</div>
+		<span class="sub-title mb-10">Debe aceptar los términos y condiciones para continuar.</span>
+
+		<div mat-dialog-content>
+			<div>
+				<p class="text-align-justify" [innerHTML]="terminosYCondiciones.descripcion"></p>
+			</div>
+
+			<div>
+				<mat-checkbox [color]="'warn'" class="example-margin" [(ngModel)]="aceptoLosTerminosYCondiciones">
+					<span class="text-aceptar"> He leído y acepto los términos y condiciones </span>
+				</mat-checkbox>
+			</div>
+		</div>
+	</div>
+	<span class="d-flex flex-grow-1"></span>
+	<div mat-dialog-actions class="d-flex justify-content-center">
+		<button
+			mat-raised-button
+			[color]="data.okBtnColor ? data.okBtnColor : 'primary'"
+			[disabled]="!aceptoLosTerminosYCondiciones"
+			(click)="accept()"
+		>
+			{{ data && data.okBtnKey ? data.okBtnKey : okBtnKey }}
+		</button>
+		<button mat-raised-button (click)="cancel()">
+			{{ data && data.cancelBtnKey ? data.cancelBtnKey : cancelBtnKey }}
+		</button>
+	</div>
+</div>

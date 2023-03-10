@@ -1,0 +1,103 @@
+<app-tab-navigation [activeTabIndex]="3"></app-tab-navigation>
+<div class="container-fluid mt-2 body-page">
+  <p class="gs1-color-sky path-paginas">Inicio
+    <span class="gs1-color-ui-5">></span> <span class="gs1-color-ui-5"> Códigos Borrador</span>
+  </p>
+</div>
+
+<app-loading ></app-loading>
+
+<div  class="container-fluid body-page">
+  <div class="row justify-content-start">
+    <div class="col-12">
+      <h1><i class="bi bi-info-square"></i> Listado de Productos en Borrador</h1>
+      <hr>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+
+    <div class="col-4 align-self-center">
+      <mat-form-field appearance="standard" style="min-width: 100%;">
+        <mat-label>Buscar</mat-label>
+        <input matInput type="text" name="buscarProducto" (keyup.enter)='buscarProducto()' [(ngModel)]="buscador">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Cabezal Listado -->
+  <div class="row " style="padding-left: 15px;
+  padding-right: 15px;">
+    <div class="col-2 productListCol">
+      <h3>Marca</h3>
+    </div>
+    <div class="col-3 productListCol">
+      <h3>Descripción</h3>
+    </div>
+    <div class="col-2 productListCol">
+      <h3>Contenido Neto</h3>
+    </div>
+    <div class="col-2 productListCol">
+      <h3>Fecha Alta</h3>
+    </div>
+    <div class="col-2 productListCol">
+      <h3>Fecha Edicion</h3>
+    </div>
+    <div class="col-1 productListCol">
+      <h3>Acciones</h3>
+    </div>
+  </div>
+
+  <div *ngIf="!tieneProductos">
+    <br>
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <h4 style="justify-content: center;"> <b>No se encontró ningún producto en estado 'Borrador'.</b> </h4>
+      </div>
+    </div>
+  </div>
+  <!-- Lista de productos -->
+  <mat-accordion class="padding-0" displayMode="default" multi="true" *ngIf="tieneProductos">
+    <div *ngFor="let producto of productos" class="row justify-content-center productList">
+      <ng-container *ngIf="!producto.isDeleted">
+        <mat-expansion-panel class="padding-0 background-color-white" hideToggle expanded="false">
+          <mat-expansion-panel-header class="padding-0 ">
+            <mat-panel-title>
+              <div class="col-2 ">
+                <h4>{{producto.marca }}</h4>
+              </div>
+              <div class="col-3 ">
+                <h4>{{producto.descripcion}}</h4>
+              </div>
+              <div class="col-2 ">
+                <h4>{{producto.contenidoNeto.cantidad}} {{producto.contenidoNeto.unidad}}</h4>
+              </div>
+              <div class="col-2 ">
+                <h4>{{producto.fechaCreacion | date:'dd/MM/yyyy'}}</h4>
+              </div>
+              <div class="col-2 ">
+                <h4>{{producto.fechaEdicion | date:'dd/MM/yyyy'}}</h4>
+              </div>
+              <div class="col-1 ">
+                <div style="display: flex;" *ngIf="producto.estado!='Baja'">
+                  <a matTooltip="Editar el Producto" (click)="editarProductoBorrador(producto)"
+                    (click)="$event.stopPropagation();"> <i class="bi bi  bi-pencil-fill icon-box"></i></a>
+                  <a matTooltip="Dar de baja" (click)="eliminarProducto(producto)" (click)="$event.stopPropagation();">
+                    <i class="bi bi bi-x-circle-fill red-color icon-box"></i>
+                  </a>
+                </div>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+      </ng-container>
+    </div>
+  </mat-accordion>
+</div>
+<mat-paginator #paginator class="paginator"
+  [length]="cantidadProductos | async" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 50, 100]"
+  (page)="cambiarPagina()" showFirstLastButtons></mat-paginator>
+
+<div class="row back-button">
+  <div class="col-12">
+    <button type="button" [routerLink]="['/pagina/inicio']" class="btn btn-light gs1-color-black">Volver</button>
+  </div>

@@ -1,0 +1,20 @@
+<div class="display-flex align-items-center" >
+	<div class="padding-10">
+		 <mat-icon class="mr-10 cursor-pointer" *ngIf="data.messageType === 'Success'" >check</mat-icon>
+     <mat-icon class="mr-10 cursor-pointer" *ngIf="data.messageType === 'Error'" >error</mat-icon>
+	</div>
+	<div class="flex-grow-1">
+		<div >
+			<span [innerHTML]="data.messageData"></span>
+		</div>
+	</div>
+	<div class="mat-simple-snackbar-action">
+		<button mat-button="" class="mat-button mat-button-base" (click)="dismiss()">
+			<span class="mat-button-wrapper">
+				 <mat-icon class="cursor-pointer">close</mat-icon>
+			</span>
+			<span class="mat-ripple mat-button-ripple"></span>
+			<span class="mat-button-focus-overlay"></span>
+		</button>
+	</div>
+</div>

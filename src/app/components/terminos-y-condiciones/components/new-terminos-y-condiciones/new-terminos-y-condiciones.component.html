@@ -1,0 +1,10 @@
+<h1  mat-dialog-title>
+	<div class="modal-header">
+		<h2 class="modal-title">
+			<i class="bi bi-box-seam mr-10"></i>Términos y condiciones
+		</h2>
+		<button type="button" class="btn-close" (click)="cancel()"></button>
+	</div>
+</h1>
+<app-terminos-y-condiciones-form class="flex-grow-1" [data]="data" (accept)="submit($event)" (cancel)="cancel()">
+</app-terminos-y-condiciones-form>

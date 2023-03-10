@@ -1,0 +1,89 @@
+<app-tab-navigation [activeTabIndex]="1" [admin]="true"></app-tab-navigation>
+<div class="container-fluid mt-2 body-page" >
+  <p class="gs1-color-sky path-paginas" >Inicio
+    <span class="gs1-color-ui-5">></span> <span class="gs1-color-ui-5"> Empresas</span>
+  </p>
+</div>
+
+<app-loading ></app-loading>
+
+<div  class="container-fluid body-page">
+
+  <div class="row justify-content-start">
+    <div class="col-12">
+      <h1><i class="bi bi-upc"></i> Listado de Empresas</h1>
+      <hr>
+    </div>
+  </div>
+  <div class="business-groups" fxLayout="row" fxLayoutAlign="space-around center">
+    <mat-card fxFlex="85" fxFlex.sm="100" fxFlex.xs="100">
+      <div [ngClass]="'groupList'">
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+
+          <div class="row justify-content-center">
+
+            <div class="col-4 align-self-center">
+              <mat-form-field appearance="standard" style="min-width: 100%;">
+                <mat-label>Buscar</mat-label>
+                <input matInput type="text" name="buscarProducto" (keyup.enter)='buscarEmpresa()' [(ngModel)]="buscador">
+              </mat-form-field>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="tableDiv">
+          <mat-table fxFlexFill  [dataSource]="empresasDataSource" matSort matSortActive="gln"
+            matSortDirection="asc" (matSortChange)="sortData($event)">
+            <ng-container matColumnDef="gln">
+              <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by name">GLN</mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.gln }}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="rut">
+              <mat-header-cell *matHeaderCellDef  mat-sort-header >RUT</mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.rut }}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="razonSocial">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Razon Social</mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.razonSocial }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="accion">
+              <mat-header-cell *matHeaderCellDef>Acción</mat-header-cell>
+              <mat-cell *matCellDef="let element" >
+                <button mat-menu-item [matMenuTriggerFor]="appMenu"  >
+                  <mat-icon class="mat-column-accion" >more_vert</mat-icon>
+                </button>
+
+                <mat-menu #appMenu="matMenu">
+                  <button mat-menu-item (click)="navegarEmpresa(element.rut)">
+                    <mat-icon>edit</mat-icon>Entrar
+                  </button>
+                </mat-menu>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+            <mat-row *matRowDef="let row; columns: displayedColumns; let rowInd = index" ></mat-row>
+          </mat-table>
+          <div class="table-no-results" [style.display]="(total | async ) == 0 ? '' : 'none'">
+            No se han creado Términos y Condiciones.
+          </div>
+          <footer>
+            <mat-paginator #paginator [length]="total | async" [pageIndex]="pageIndex" [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25]" (page)="cambiarPagina($event)" >
+            </mat-paginator>
+          </footer>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+</div>

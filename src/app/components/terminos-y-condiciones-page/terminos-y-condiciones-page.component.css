@@ -1,0 +1,39 @@
+.productList{
+
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    margin: 0 !important;
+}
+
+.productListCol, .productList h4{
+    padding-left: 1rem !important;
+    padding-right: 0 !important;
+    padding-bottom: 0.1rem !important;
+    padding-top: 0.1rem !important;
+    margin: 0 !important;
+}
+
+.productListCol h3{
+    color: black;
+    font-weight: 500;
+}
+.deleteButton :hover
+{
+    cursor: pointer;
+}
+
+.radioButtonsPack
+{
+    margin: 1rem;
+}
+.icons{
+    margin-left: 4px;
+    margin-right: 4px;
+    width: 30px;
+}
+.orange-color{color: #f26334;}
+.red-color{color: #dc3545;}
+.black-color{color: black}
+.background-color-white{ background-color: #fff;}
+.padding-0{padding: 0;}

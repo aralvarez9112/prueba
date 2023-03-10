@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow bg-body rounded ">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <img src="./assets/images/GS1_Uruguay.png" alt="" style="width: 100px;" class="d-inline-block align-text-top">
+    </a>
+    <div class="display-flex" *ngIf="this.authenticationService.tokenIsFresh.getValue()" >
+      <div class="container-fluid padding-10">
+        <div id="business-name">{{ nombreEmpresa }}</div>
+        <div id="user-name">{{ nombreCompleto }}</div>
+      </div>
+      <button class="btn padding-0 mt-1" matTooltip="Mi&nbsp;cuenta" [matMenuTriggerFor]="menu" >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <button  class="btn display-flex padding-0 mt-1 ml-10 " *ngIf="this.config.env !== 'prod'"  >
+        <mat-icon>science</mat-icon>
+        {{ this.config.env }}
+      </button>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item (click)="empresas()"> <mat-icon>account_circle</mat-icon>Empresas </a>
+        <a mat-menu-item (click)="logout()"> <mat-icon>exit_to_app</mat-icon>Logout </a>
+      </mat-menu>
+    </div>
+  </div>
+
+</nav>
+

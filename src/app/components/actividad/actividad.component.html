@@ -1,0 +1,14 @@
+<div class="container-fluid" style="border-bottom: 1px solid #e5f0fc;">
+    <div class="row justify-content-center recentProducts">
+      <div class="col-10">
+        <p class="dateText">{{actividad.fechaCreacion | date:'dd/MM/yyyy'}}</p>
+        <h5 class="descriptionText">{{actividad.tipo}} {{actividad.gtin}} {{actividad.descripcion}}</h5>
+        <p class="userText"><i class="bi bi-person-fill" style="margin-right: 5px;"></i> {{actividad.usuario}}</p>
+      </div>
+      <div class="col-2">
+        <div>
+            <h5><span [ngStyle]="{'color':  statusManager()}"><b>{{actividad.estado}}</b></span></h5>
+        </div>
+      </div>
+    </div>
+</div>

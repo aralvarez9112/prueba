@@ -1,0 +1,22 @@
+
+<h1 *ngIf="data.titleKey !== ''" mat-dialog-title>
+	<div class="modal-header">
+		<h2 class="modal-title green-color" >
+			<i class="bi bi-exclamation-triangle mr-10"></i>Su código de unidad logística ha sido creado correctamente!</h2>
+		<button type="button" class="btn-close" (click)="cancel()"></button>
+	  </div>
+</h1>
+<div mat-dialog-content>
+
+  <div class="col-12">
+    <br>
+    <h2>GTIN14: {{gtin14}}</h2>
+    <br>
+    <h4 [innerHTML]="data.messageKey">Puede consultar su código en cualquier momento en el listado de códigos</h4>
+  </div>
+</div>
+<div mat-dialog-actions class="modal-footer">
+	<button mat-raised-button class="btn btn-primary" (click)="accept()">
+		ACEPTAR
+	</button>
+</div>

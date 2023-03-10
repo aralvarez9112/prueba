@@ -1,0 +1,143 @@
+<app-tab-navigation [activeTabIndex]="1"></app-tab-navigation>
+<div class="container-fluid mt-2 body-page" >
+  <p class="gs1-color-sky path-paginas" >Inicio
+    <span class="gs1-color-ui-5">></span> <span class="gs1-color-ui-5"> Códigos</span>
+  </p>
+</div>
+
+<app-loading ></app-loading>
+
+<div  class="container-fluid body-page">
+
+  <div class="row justify-content-start">
+    <div class="col-12">
+      <h1><i class="bi bi-upc"></i> Listado de Códigos</h1>
+      <hr>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="class col-4 align-self-center">
+      <mat-slide-toggle class="example-margin" [color]="color" (click)="showGTIN14()" checked="true">
+        Mostrar GTIN14
+      </mat-slide-toggle>
+    </div>
+    <div class="col-4 align-self-center">
+      <mat-form-field appearance="standard" style="min-width: 100%;">
+        <mat-label>Buscar</mat-label>
+        <input matInput type="text" name="buscarProducto" (keyup.enter)='buscarProducto()' [(ngModel)]="buscador">
+      </mat-form-field>
+    </div>
+    <div class="col-4 align-self-center" style="text-align: end;">
+      <a [routerLink]="['/pagina/producto-nuevo']" class="btn btn-secondary gs1-color-white"
+        style="margin-bottom: 10px;">+ Nuevo Código</a>
+    </div>
+  </div>
+  <!-- Cabezal Listado -->
+  <div class="row justify-content-center">
+    <div class="col-1 productListCol">
+      <h3>Tipo</h3>
+    </div>
+    <div class="col-2 productListCol">
+      <h3>Código</h3>
+    </div>
+    <div class="col-5 productListCol">
+      <h3>Descripción</h3>
+    </div>
+    <div class="col-1 productListCol">
+      <h3>Estado</h3>
+    </div>
+    <div class="col-2 productListCol">
+      <h3>Fecha alta</h3>
+    </div>
+    <div class="col-1 productListCol">
+      <h3>Acciones</h3>
+    </div>
+  </div>
+
+  <div *ngIf="!tieneProductos">
+    <div class="row justify-content-center">
+      <div class="col-3">
+        <h4 style="justify-content: center;"> <b>No se encontró ningún código.</b> </h4>
+      </div>
+    </div>
+  </div>
+  <!-- Lista de productos -->
+  <mat-accordion class="padding-0" displayMode="default" multi="true">
+    <div *ngFor="let producto of productosPaginados |async" class="row justify-content-center productList">
+      <ng-container>
+        <mat-expansion-panel class="padding-0 background-color-white" hideToggle expanded="true">
+          <mat-expansion-panel-header class="padding-0 ">
+            <mat-panel-title>
+              <div class="col-1 ">
+                <h4>GTIN13</h4>
+              </div>
+              <div class="col-2 ">
+                <h4>{{producto.gtin}}</h4>
+              </div>
+              <div class="col-5 ">
+                <h4> {{producto.marca}} {{producto.subMarca}} {{producto.descripcion}} {{producto.variedad}}
+                  {{producto.contenidoNeto.cantidad}} {{producto.contenidoNeto.unidad}}</h4>
+              </div>
+              <div class="col-1 ">
+                <h4>{{producto.estado }}</h4>
+              </div>
+              <div class="col-2 ">
+                <h4>{{producto.fechaCreacion | date:'MM/dd/yyyy'}}</h4>
+              </div>
+              <div class="col-1 ">
+                <div style="display: flex;" *ngIf="producto.estado!='Baja'">
+                  <a matTooltip="Solicitar código de empaque" (click)="newGTIN14(producto)"
+                    (click)="$event.stopPropagation();"> <i class="bi bi-box-seam icons"></i></a>
+                  <a matTooltip="Info del Producto" (click)="infoProducto(producto)"
+                    (click)="$event.stopPropagation();"> <i class="bi bi-file-bar-graph icons"></i></a>
+                  <a matTooltip="Dar de baja" (click)="eliminarProducto(producto)" (click)="$event.stopPropagation();">
+                    <i class="bi bi-x-circle-fill red-color icons"></i>
+                  </a>
+                </div>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div *ngFor="let empaque of producto.empaques; let i=index"
+            class="row justify-content-center background-color-white ">
+            <ng-container>
+              <div class="col-1 ">
+                <h4>GTIN14</h4>
+              </div>
+              <div class="col-2 ">
+                <h4>{{empaque.gtin}}</h4>
+              </div>
+              <div class="col-5 ">
+                <h4>{{empaque.empaque}} x {{empaque.unidades}} {{producto.marca}} {{producto.subMarca}} {{producto.descripcion}}</h4>
+              </div>
+              <div class="col-1 ">
+                <h4>{{empaque.estado}}</h4>
+              </div>
+              <div class="col-2 ">
+                <h4>{{empaque.fechaCreacion | date:'MM/dd/yyyy'}}</h4>
+              </div>
+              <div class="col-1 ">
+                <div style="display: flex;">
+                  <a matTooltip="Info del Empaque" (click)="infoEmpaque(empaque,producto)"
+                  (click)="$event.stopPropagation();"> <i class="bi bi-file-bar-graph icons"></i></a>
+                <a *ngIf="empaque.estado!='Baja'" class="deleteButton" matTooltip="Dar de baja"
+                  (click)="eliminarEmpaque(producto,empaque)">
+                  <i class="bi bi-x-circle-fill red-color icons"></i>
+                </a>
+              </div>
+              </div>
+            </ng-container>
+          </div>
+        </mat-expansion-panel>
+      </ng-container>
+    </div>
+  </mat-accordion>
+</div>
+<mat-paginator #paginator class="paginator"
+  [length]="cantidadProductos | async" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 50, 100]"
+  (page)="cambiarPagina()" showFirstLastButtons></mat-paginator>
+
+<div class="row back-button">
+  <div class="col-12">
+    <button type="button" [routerLink]="['/pagina/inicio']" class="btn btn-light gs1-color-black">Volver</button>
+  </div>
+</div>

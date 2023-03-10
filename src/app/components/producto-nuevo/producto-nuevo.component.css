@@ -1,0 +1,116 @@
+.form-field {
+  width: 100%;
+}
+
+.form-field-90 {
+  width: 90%;
+  height: 80px;
+}
+
+.form-field-65 {
+  width: 65%;
+}
+.form-field-45 {
+  width: 45%;
+}
+.height-form-fild-120{
+  height: 120px;
+}
+
+.button-action-position {
+  margin-left: 2rem;
+}
+
+
+.file-input {
+  display: none;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  /* Safari */
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stickyCard {
+  border-radius: 1rem;
+  background-color: white;
+  box-shadow: 0px 1px 2px #808080;
+  border-top: 5px solid #00b6de;
+  padding: 0.5rem;
+  /*  margin-right: 1rem; */
+}
+
+div.stickyCard h3 {
+  margin-bottom: 0 !important;
+  line-height: 100%;
+}
+
+div.stickyCard h4 {
+  margin-bottom: 0 !important;
+  font-size: 0.75rem;
+  color: #808080;
+  line-height: 100%;
+}
+
+.limpiar-combo-icon {
+  margin-left: 1rem;
+  color: #dc3545;
+  font-size: 1.25rem;
+}
+
+.titulo-etiquetas {
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.separador {
+  margin-right: 10px;
+}
+
+.image-position {
+  margin-top: 20px;
+  display: flex;
+}
+
+.image-load {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.sacarloadingGPC {
+  display: none;
+}
+
+.codigo-button {
+  cursor: pointer
+}
+
+.color-button {
+  color: #dc3545;
+}

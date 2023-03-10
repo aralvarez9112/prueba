@@ -1,0 +1,45 @@
+<!-- <div style="border-top: 10px solid #00b6de; width: 100%;" class="modal-content"> -->
+<h1 *ngIf="data.titleKey !== ''" mat-dialog-title>
+	<div class="modal-header">
+		<h2 class="modal-title">
+			<i class="bi bi-box-seam mr-10"></i>{{data.titleKey}}
+		</h2>
+		<button type="button" class="btn-close" (click)="cancel()"></button>
+	</div>
+</h1>
+<div mat-dialog-content>
+	<div class="modal-body">
+		<div class="row justify-content-center">
+			<div class="col-12">
+				<h4 class="fw">Complete los siguientes datos para dar de alta su código.</h4>
+				<h4><i class="bi bi-info-circle"></i> Una vez creado no podrá modificarlo.</h4>
+				<p class="orange-color"><b>Seleccione tipo de Empaque *</b></p>
+				<mat-radio-group [(ngModel)]="pickedPackage">
+					<mat-radio-button class="radioButtonsPack" *ngFor="let package of packages; let i=index"
+						[checked]="i === 0" [value]="package">
+						{{package}}
+					</mat-radio-button>
+				</mat-radio-group>
+				<br><br>
+				<p class="orange-color"><b>Ingrese Cantidad de Unidades *</b></p>
+
+					<mat-form-field appearance="outline">
+						<mat-label>Cantidad</mat-label>
+						<input matInput [(ngModel)]="unitsInside" type="number" min="1" name="unitsInside" required>
+					</mat-form-field>
+
+				<br>
+				<h3> <b>{{pickedPackage}} x {{unitsInside}}</b> {{descripcionProducto}} </h3>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div mat-dialog-actions class="modal-footer">
+	<button mat-raised-button class="btn btn-secondary gs1-color-white" (click)="cancel()">
+		CANCELAR
+	</button>
+	<button mat-raised-button class="btn btn-primary" (click)="accept()">
+		GENERAR CÓDIGO
+	</button>
+</div>

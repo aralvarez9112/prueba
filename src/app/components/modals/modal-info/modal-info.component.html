@@ -1,0 +1,22 @@
+<!-- <div style="border-top: 10px solid #f05587; width: 100%;" class="modal-content"> -->
+<h1 *ngIf="data.titleKey !== ''" mat-dialog-title>
+  <div class="modal-header">
+    <h2 class="modal-title info-color">
+      <i class="bi bi-exclamation-triangle mr-10" ></i>{{data.titleKey}}
+    </h2>
+    <button type="button" class="btn-close" (click)="cancel()"></button>
+  </div>
+</h1>
+<div mat-dialog-content>
+   <app-producto [producto]="producto" *ngIf="!empaque"></app-producto>
+   <app-producto-empaque  [producto]="producto" [empaque]="empaque" *ngIf="empaque"></app-producto-empaque>
+</div>
+<div mat-dialog-actions class="modal-footer">
+  <button mat-raised-button class="btn btn-secondary gs1-color-white" (click)="cancel()">
+    Cancelar
+  </button>
+  <button mat-raised-button class="btn btn-primary" (click)="accept()">
+    Aceptar
+  </button>
+
+</div>

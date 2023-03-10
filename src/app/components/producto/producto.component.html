@@ -1,0 +1,12 @@
+<div class="row justify-content-start">
+  <div class="col-6 align-self-center"><img [src]="imgURL" class="img-thumbnail postion-img" width="80%"></div>
+  <div class="col-6 align-self-center">
+    <h2 class="gs1-color-orange dt">GTIN: {{this.producto.gtin | vacio}}</h2>
+    <h4><b>Marca: {{this.producto.marca}} {{this.producto.subMarca | vacio}}</b></h4>
+    <h4> <b>Descripcion: {{this.producto.descripcion | vacio}}</b></h4>
+    <h4><b>Contenido Neto: {{this.producto.contenidoNeto | contN }}</b></h4>
+    <h4><b>Mercado Objetivo: {{this.producto.mercadoObjetivo | pais}}</b></h4>
+    <h4><b>GPC: {{producto.gpc | vacio}}</b></h4>
+    <h4><b>Estado: {{producto.estado | vacio}}</b></h4>
+  </div>
+</div>

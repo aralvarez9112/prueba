@@ -1,0 +1,92 @@
+.recentProducts h5 {
+  color: black;
+  font-size: 0.8rem;
+}
+
+.border-card {
+  margin-top: 20px;
+  border-top: 10px solid #00b6de;
+}
+
+.container-body-inicio {
+  min-height: 55%;
+}
+.bg-image{
+  height: 180px;
+  border: none;
+  opacity: 0.5;
+}
+
+@media(max-width: 600px) {
+  .producto {
+    left: 30px;
+    top: 250px;
+    width: 90%;
+  }
+
+  .actividades {
+    left: 30px;
+    top: 600px;
+    width: 90%;
+  }
+
+  .container-body-inicio {
+    min-height: 90%;
+  }
+}
+
+@media(min-width: 600px) {
+  .producto {
+    left: 30px;
+    top: 250px;
+    width: 40%;
+  }
+
+  .actividades {
+    right: 30px;
+    top: 250px;
+    width: 50%;
+  }
+}
+
+@media(min-width: 890px) {
+  .producto {
+    left: 30px;
+    top: 250px;
+    width: 375px;
+  }
+
+  .actividades {
+    right: 30px;
+    top: 250px;
+    width: 50%;
+  }
+}
+
+@media(min-width: 1200px) {
+  .producto {
+    left: 100px;
+    top: 250px;
+    width: 380px;
+  }
+
+  .actividades {
+    right: 100px;
+    top: 250px;
+    width: 50%;
+  }
+}
+
+.card-title {
+  margin-top: 5px;
+}
+
+.link {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+}

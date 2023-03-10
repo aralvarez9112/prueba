@@ -1,0 +1,183 @@
+<app-tab-navigation [activeTabIndex]="1"></app-tab-navigation>
+<div class="container-fluid mt-2 body-page" >
+  <p class="gs1-color-sky path-paginas">Inicio <span
+      class="gs1-color-ui-5">></span>
+    Códigos <span class="gs1-color-ui-5">></span> <span class="gs1-color-ui-5"> Nuevo Código</span></p>
+</div>
+
+<app-loading ></app-loading>
+
+<div  class="container-fluid body-page">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <h1>Complete los datos de su producto</h1>
+      <hr>
+      <div class="row  sticky">
+        <div class="col-12 stickyCard">
+          <div class="display-flex">
+            <div ><img [src]="imgURL" width="80px" class="img-thumbnail"></div>
+            <div >
+              <div class=" padding-10">
+                <h3  class="titulo-etiquetas">Prefijo: {{codigoSeleccionadoValor | codigo}}</h3>
+              </div>
+              <div class=" padding-10">
+                <h3>{{descripcionConcatenada }}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <form [formGroup]="form">
+        <h5></h5>
+        <div class="row">
+          <!--Marca-->
+          <div class="col-lg-6">
+            <div>
+              <h4 class="gs1-color-black titulo-etiquetas">Marca *</h4>
+              <mat-form-field appearance="outline" class="form-field-90">
+                <mat-label>Mis Marcas</mat-label>
+                <mat-select matNativeControl formControlName="marca" name="marca"
+                  [compareWith]="compararMarcasOSubMarcas" required>
+                  <mat-option *ngFor="let m of marcas" [value]="m">{{m.nombre}}</mat-option>
+                </mat-select>
+                <mat-hint>Nombre utilizado por el propietario de una marca para identificar de forma exclusiva
+                  una línea de artículos o servicios comerciales.</mat-hint>
+              </mat-form-field>
+              <a *ngIf="eliminarMarcaSeleccionada" type="button" (click)="eliminarMarca()" class="limpiar-combo-icon"><i
+                  class="bi bi-x-circle-fill"></i></a>
+
+              <div *ngIf="nuevaMarca">
+                <mat-form-field appearance="standard" class="form-field-65">
+                  <mat-label>Agregar nueva Marca</mat-label>
+                  <input matInput placeholder="Marca" type="text" formControlName="nuevaMarca" name="nuevaMarca">
+                </mat-form-field>
+                <button type="button" (click)="adicionarMarca()"
+                  class="btn btn-sm btn-secondary gs1-color-white button-action-position">Agregar</button>
+              </div>
+            </div>
+
+            <h4 class="gs1-color-black titulo-etiquetas">Sub-Marca (opcional)</h4>
+            <mat-form-field appearance="outline" class="form-field-90">
+              <mat-label>Mis Sub-Marcas</mat-label>
+              <mat-select matNativeControl formControlName="subMarca" name="subMarca"
+                [compareWith]="compararMarcasOSubMarcas">
+                <mat-option *ngFor="let subMarca of subMarcas" [value]="subMarca">{{subMarca.nombre}}</mat-option>
+              </mat-select>
+              <mat-hint>Nombre utilizado por el propietario de una marca para identificar de forma exclusiva
+                una línea de artículos o servicios comerciales.</mat-hint>
+            </mat-form-field>
+            <a *ngIf="eliminarSubMarcaSeleccionada" type="button" (click)="eliminarSubMarca()"
+              class="limpiar-combo-icon"><i class="bi bi-x-circle-fill"></i></a>
+
+            <div *ngIf="nuevaSubMarca">
+              <mat-form-field appearance="standard" class="form-field-65">
+                <mat-label>Agregar Nueva Sub-Marca</mat-label>
+                <input matInput placeholder="nombre" type="text" formControlName="nuevaSubMarca" name="nuevaSubMarca">
+              </mat-form-field>
+              <button type="button" (click)="adicionarSubMarca()"
+                class="btn btn-sm btn-secondary gs1-color-white button-action-position">Agregar</button>
+            </div>
+
+            <h4 class="gs1-color-black titulo-etiquetas">Descripción Funcional *</h4>
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Descripción</mat-label>
+              <input matInput placeholder="Jabón para Lavarropas" formControlName="descripcion" type="text"
+                name="form-field" required>
+              <mat-hint>No incluya la marca ni el contenido neto.</mat-hint>
+            </mat-form-field>
+            <div class="col-lg-6">
+            <h4 class="gs1-color-black titulo-etiquetas">Variedad (opcional)</h4>
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Variedad</mat-label>
+              <input matInput placeholder="Fragancia Lavanda" formControlName="variedad" type="text" name="variedad">
+              <mat-hint>Para indicar fragancias, sabores, colores, etc.</mat-hint>
+            </mat-form-field>
+            </div>
+            <h4 class="gs1-color-black titulo-etiquetas">Contenido Neto *</h4>
+            <div class="mb-10">
+              <mat-form-field appearance="outline" class="form-field-45 height-form-fild-120 separador">
+                <mat-label>Cantidad</mat-label>
+                <input matInput placeholder="100" formControlName="cantidad" type="number" min="0.001" max="100000"
+                  name="cantidad" required>
+                <mat-hint>Utilice "EA" (eaches) para describir unidades, ie. un frasco conteniendo 20 comprimidos puede
+                  representarse como 20 EA</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="form-field-45 height-form-fild-120">
+                <mat-label>Unidad</mat-label>
+                <mat-select matNativeControl formControlName="unidadMedida" name="unidadMedida" required>
+                  <mat-option *ngFor="let unidad of unidadesMedidas" [value]="unidad">{{unidad}}</mat-option>
+                </mat-select>
+                <mat-hint>Utilice "EA" (eaches) para describir unidades, ie. un frasco conteniendo 20 comprimidos puede
+                  representarse como 20 EA</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <!--FOTO-->
+          <div class="col-lg-6">
+            <div>
+              <h4 class="gs1-color-black titulo-etiquetas">Categoría global de Producto (GPC) *</h4>
+              <div style="display: flex;">
+                <mat-form-field class="form-field-90" appearance="outline">
+                  <mat-label>Categoria global de producto</mat-label>
+                  <input type="text" matInput formControlName="gpc" name="gpc" required [matAutocomplete]="auto"
+                    (focusout)="obtenerGPCSelecionado()">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let brick of bricks" [value]="brick.codigo">{{ brick.descripcion }} - {{
+                      brick.codigo }}</mat-option>
+                  </mat-autocomplete>
+                  <mat-hint>Seleccione el o los paises donde pretende comercializar su producto</mat-hint>
+                </mat-form-field>
+                <div type="button" class="loader" [ngClass]="{'sacarloadingGPC': !buscandoGPC}"></div>
+              </div>
+            </div>
+            <div>
+              <h4 class="gs1-color-black titulo-etiquetas">Mercado Objetivo *</h4>
+              <mat-form-field appearance="outline" class="form-field-45">
+                <mat-label>Mercado Objetivo</mat-label>
+                <br>
+                <mat-select multiple matNativeControl formControlName="mercadoObjetivo" [compareWith]="compararPaises"
+                  name="mercadoObjetivo" required>
+                  <mat-option *ngFor="let country of countries" [value]="country">{{country.nombre}}</mat-option>
+                </mat-select>
+                <mat-hint>Seleccione el o los paises donde pretende comercializar su producto</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="mt-10 ">
+              <h4 class="gs1-color-black" style="font-weight: bold;">Foto del producto (opcional)</h4>
+              <input id="input-foto" type="file" class="file-input" accept="image/*" (change)="onFileSelected($event)"
+                #fileUpload>
+              <div class="file-upload">
+                <button class="btn btn-sm btn-primary gs1-color-white" (click)="fileUpload.click()">{{"Seleccionar                   Foto"}}
+                  <i style="font-size: 18px; margin-left: 10px;" class="bi bi-cloud-arrow-up-fill"></i>
+                </button>
+                <div class="image-position">
+                  <img id="imagen" [src]="imgURL" class="img-thumbnail image-load">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <mat-checkbox [color]="'warn'" formControlName="isActive" name="isActive">Este producto se encuentra en
+            desarrollo</mat-checkbox>
+          <br>
+          <mat-hint>Los productos marcados con esta opción no se reportarán al registro global de GS1.</mat-hint>
+          <br>
+          <mat-hint>Una vez transcurridos 60 días a partir de la fecha de solicitud del código, el mismo dejará de estar
+            en Desarrollo automaticamente.</mat-hint>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row justify-content-center" style="margin-top: 2rem;margin-bottom: 2rem;">
+    <div class="col-3">
+      <button [routerLink]="['/pagina/inicio']" type="button" class="btn btn-light gs1-color-black">Volver</button>
+      <!-- Button trigger modal -->
+      <button type="button" [disabled]="!valido" class="btn btn-secondary gs1-color-white button-action-position"
+        (click)="siguiente()">
+        Siguiente
+      </button>
+    </div>
+  </div>

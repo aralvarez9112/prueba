@@ -1,0 +1,38 @@
+<app-tab-navigation [activeTabIndex]="0"></app-tab-navigation>
+<div class="container-fluid">
+  <div class="row ">
+    <img  src="/assets/images/banner3.jpg" class="img-thumbnail bg-image">
+   </div>
+</div>
+<div class="container-body-inicio">
+  <div class="row justify-content-center">
+    <div class="col-2">
+      <div class="card position-absolute shadow bg-body rounded border-card producto">
+        <div class="card-body">
+          <h4 class="card-title">Productos Activos</h4>
+          <p class="card-text" style="font-size: 14.5px; margin-bottom: 10px;">Usted tiene actualmente: <span
+              style="font-size: 20px; font-weight: bold; margin-left: 10px;"
+              class="gs1-color-orange">{{cantidadProductos}}</span><br>
+          </p>
+          <a [routerLink]="['/pagina/producto-nuevo']" class="btn btn-secondary gs1-color-white mb-10">+ Nuevo
+            Código</a>
+        </div>
+
+          <a href="https://www.gs1.org/1/gtinrules/es/decision-support/decision/1" class="gs1-color-blue link">
+            <p >Mi producto cambio y no estoy seguro si necesito un nuevo código.</p>
+          </a>
+        <a  class="gs1-color-lightBlue link" (click)="cargaMasiva()" >Importar/Exportar Códigos ></a>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card position-absolute shadow bg-body rounded border-card actividades">
+        <div class="card-body">
+          <h4 class="card-title">Última Actividad:</h4>
+          <app-actividad *ngFor="let actividad of actividadReciente" [actividad]="actividad"></app-actividad>
+        </div>
+        <a [routerLink]="['/pagina/productos']" class="gs1-color-lightBlue link">
+          Ver todos mis Códigos ></a>
+      </div>
+    </div>
+  </div>
+</div>

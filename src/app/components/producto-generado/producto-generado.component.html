@@ -1,0 +1,47 @@
+<div class="container-fluid mt-4 body-page" >
+    <div class="row justify-content-start">
+        <div class="col-12">
+            <div class="alert alert-success" role="alert">
+                Su código ha sido creado con éxito!
+            </div>
+            <h1>Felicidades!, su producto ahora está codificado con un GTIN válido</h1>
+            <p class="gs1-color-grey">Ahora puedes comenzar a utilizar el código GTIN generado para este producto</p>
+        </div>
+    </div>
+    <br>
+    <div class="row justify-content-start newGTINCard border-superior">
+      <app-producto [producto]="producto" style="width:70%"></app-producto>
+        <div class="col-3">
+
+        <div class="col-12 align-self-center position-img" id="loader" style="display: none;">
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border gs1-color-sky" role="status" style="width: 8rem; height: 8rem;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 align-self-center position-img">
+            <div id="resultBlock" style="display: none">
+                <a href="" download id="downloadLink">
+                    <img src="" id="image" style="width: 100%;">
+                </a>
+            </div>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-10">
+        <div class="col-3">
+          <button type="button" [routerLink]="['/pagina/inicio']" class="btn btn-primary btn-sm mr-10">Finalizar</button>
+          <button type="button" class="btn btn-outline-dark btn-sm " (click)="generarCodigoBarra()">
+              Generar Barras <i class="bi bi-upc-scan"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <h5>GS1 Uruguay no es responsable de la legibilidad de los códigos de barras descargados, no podemos
+          asegurar que los servicios de impresion utilizados por los miembros sigan los estándares y las pautas de
+          GS1 con respecto a la calidad de impresión de códigos de barras.
+      </h5>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<form class="" [formGroup]="formGroup" novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off"
+  inputFocus>
+  <div class="scroll  flex-direction-column ">
+    <div class=" flex-shrink-0  flex-direction-column ">
+      <div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+        <div>
+          <mat-form-field class="width-100">
+            <mat-label>Versión</mat-label>
+
+            <input matInput type="text" formControlName="version" />
+          </mat-form-field>
+
+          <mat-form-field class="width-100">
+            <mat-label>Título</mat-label>
+
+            <input matInput type="text" formControlName="titulo" />
+          </mat-form-field>
+
+          <div class="height-60pct">
+            <textarea [ngClass]="{ 'border-required': !formGroup.get('descripcion')?.value }"
+              class="form-control min-height-100 width-100 padding-top-10px" formControlName="descripcion"
+              required></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div   class="padding-10">
+    <button mat-raised-button type="submit" color="primary">{{ 'Guardar' }}</button>
+
+    <button  mat-raised-button type="button" class="ml-10" (click)="close()">
+      {{ 'Cancelar' }}
+    </button>
+  </div>
+</form>

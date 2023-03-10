@@ -1,0 +1,15 @@
+:host .panel .panel-body {
+	word-wrap: break-word;
+}
+
+
+.mat-radio-button {
+   width: 100px;
+}
+mat-radio-group{
+    margin-left: 15px;
+}
+.orange-color{color: #f26334;}
+.red-color{color: #dc3545;}
+.black-color{color: black}
+.padding-0{padding: 0;}

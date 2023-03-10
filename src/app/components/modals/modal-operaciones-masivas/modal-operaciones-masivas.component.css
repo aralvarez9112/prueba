@@ -1,0 +1,8 @@
+:host .panel .panel-body {
+	word-wrap: break-word;
+}
+
+
+.modal-body{
+  height: 150px;
+ }
